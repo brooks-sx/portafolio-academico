@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Mi progreso | Portafolio Académico</title>
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<header class="header">
+    <div class="container nav-container">
+
+        <a href="index.html" class="logo">
+            <span>PORTAFOLIO</span>
+            <small>ACADÉMICO</small>
+        </a>
+
+        <button class="menu-toggle" id="menuToggle">☰</button>
+
+        <nav class="nav" id="mainNav">
+            <a href="index.html">Inicio</a>
+            <a href="cursos.html">Cursos</a>
+            <a href="progreso.html" class="active">Mi progreso</a>
+            <a href="sobre-mi.html">Sobre mí</a>
+            <a href="#" id="githubLink">GitHub</a>
+        </nav>
+
+    </div>
+</header>
+
+
+<main>
+
+    <section class="page-header">
+        <div class="container">
+            <p class="eyebrow">SEGUIMIENTO ACADÉMICO</p>
+            <h1>Mi progreso</h1>
+            <p>
+                Resumen del contenido registrado actualmente
+                en mi portafolio.
+            </p>
+        </div>
+    </section>
+
+
+    <section class="section">
+        <div class="container">
+
+            <div class="progress-grid">
+
+                <div class="progress-card">
+                    <span>Cursos</span>
+                    <strong id="courseCount">0</strong>
+                </div>
+
+                <div class="progress-card">
+                    <span>Semanas</span>
+                    <strong id="weekCount">0</strong>
+                </div>
+
+                <div class="progress-card">
+                    <span>Actividades</span>
+                    <strong id="activityCount">0</strong>
+                </div>
+
+                <div class="progress-card">
+                    <span>Evidencias</span>
+                    <strong id="evidenceCount">0</strong>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+</main>
+
+
+<footer class="footer">
+    <div class="container footer-content">
+
+        <div>
+            <h3>Portafolio Académico</h3>
+            <p>Ingeniería de Sistemas y Computación</p>
+            <p>Universidad Peruana Los Andes</p>
+        </div>
+
+        <div class="footer-right">
+            <p>© <span id="currentYear"></span> Todos los derechos reservados.</p>
+        </div>
+
+    </div>
+</footer>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>

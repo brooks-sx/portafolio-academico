@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cursos | Portafolio Académico</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<header class="header">
+    <div class="container nav-container">
+
+        <a href="index.html" class="logo">
+            <span>PORTAFOLIO</span>
+            <small>ACADÉMICO</small>
+        </a>
+
+        <button class="menu-toggle" id="menuToggle">☰</button>
+
+        <nav class="nav" id="mainNav">
+            <a href="index.html">Inicio</a>
+            <a href="cursos.html" class="active">Cursos</a>
+            <a href="progreso.html">Mi progreso</a>
+            <a href="sobre-mi.html">Sobre mí</a>
+            <a href="#" id="githubLink">GitHub</a>
+        </nav>
+
+    </div>
+</header>
+
+
+<main>
+
+    <section class="page-header">
+        <div class="container">
+            <p class="eyebrow">FORMACIÓN ACADÉMICA</p>
+            <h1>Mis cursos</h1>
+            <p>
+                Selecciona un curso para consultar sus semanas,
+                actividades y evidencias.
+            </p>
+        </div>
+    </section>
+
+
+    <section class="section">
+        <div class="container">
+
+            <div class="courses-grid">
+
+                <article class="course-card">
+                    <div class="course-number">01</div>
+
+                    <div class="course-content">
+                        <span class="course-tag">CURSO</span>
+
+                        <h2>Base de Datos II</h2>
+
+                        <p>
+                            Actividades, infografías, manuales y evidencias
+                            relacionadas con el desarrollo del curso.
+                        </p>
+
+                        <a href="cursos/base-datos-ii.html" class="btn btn-primary">
+                            Explorar curso
+                        </a>
+                    </div>
+                </article>
+
+
+                <article class="course-card">
+                    <div class="course-number">02</div>
+
+                    <div class="course-content">
+                        <span class="course-tag">CURSO</span>
+
+                        <h2>Algoritmos y Estructura de Datos</h2>
+
+                        <p>
+                            Espacio destinado a las actividades, prácticas
+                            y evidencias del curso.
+                        </p>
+
+                        <a href="cursos/algoritmos.html" class="btn btn-primary">
+                            Explorar curso
+                        </a>
+                    </div>
+                </article>
+
+            </div>
+
+        </div>
+    </section>
+
+</main>
+
+
+<footer class="footer">
+    <div class="container footer-content">
+
+        <div>
+            <h3>Portafolio Académico</h3>
+            <p>Ingeniería de Sistemas y Computación</p>
+            <p>Universidad Peruana Los Andes</p>
+        </div>
+
+        <div class="footer-right">
+            <p>© <span id="currentYear"></span> Todos los derechos reservados.</p>
+        </div>
+
+    </div>
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>
