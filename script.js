@@ -1,116 +1,183 @@
-document.addEventListener("DOMContentLoaded", () => {
+/* =====================================================================
+   ACADEMIC SYSTEM — script.js
+   Utilidades generales: menú móvil, año del footer, enlace de GitHub,
+   secuencia de arranque del sistema (en todas las páginas) y el
+   sistema de notificaciones (toasts). Depende de data.js (debe ir
+   antes en el HTML).
+   ===================================================================== */
 
-    /* ================================
+window.SystemUI = (function () {
+
+    /* -----------------------------------------------------------------
+       TOASTS
+       ----------------------------------------------------------------- */
+
+    let toastLayer = null;
+
+    function ensureToastLayer() {
+        if (toastLayer) return toastLayer;
+
+        toastLayer = document.createElement("div");
+        toastLayer.className = "system-toasts";
+        toastLayer.setAttribute("aria-live", "polite");
+        document.body.appendChild(toastLayer);
+
+        return toastLayer;
+    }
+
+    function toast(message) {
+        const layer = ensureToastLayer();
+
+        const el = document.createElement("div");
+        el.className = "system-toast";
+        el.textContent = message;
+
+        layer.appendChild(el);
+
+        window.setTimeout(() => {
+            el.remove();
+        }, 2500);
+    }
+
+    /* -----------------------------------------------------------------
        MENÚ MÓVIL
-    ================================= */
+       ----------------------------------------------------------------- */
 
-    const menuToggle = document.getElementById("menuToggle");
-    const mainNav = document.getElementById("mainNav");
+    function initMobileMenu() {
+        const menuToggle = document.getElementById("menuToggle");
+        const nav = document.querySelector(".nav");
 
-    if (menuToggle && mainNav) {
+        if (!menuToggle || !nav) return;
 
         menuToggle.addEventListener("click", () => {
-            mainNav.classList.toggle("open");
-        });
+            nav.classList.toggle("open");
 
-        mainNav.querySelectorAll("a").forEach(link => {
-
-            link.addEventListener("click", () => {
-                mainNav.classList.remove("open");
-            });
-
+            const isOpen = nav.classList.contains("open");
+            menuToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
         });
     }
 
+    /* -----------------------------------------------------------------
+       AÑO DEL FOOTER
+       ----------------------------------------------------------------- */
 
-    /* ================================
-       AÑO AUTOMÁTICO
-    ================================= */
+    function initFooterYear() {
+        const year = new Date().getFullYear();
 
-    const currentYear = document.getElementById("currentYear");
-
-    if (currentYear) {
-        currentYear.textContent = new Date().getFullYear();
+        document.querySelectorAll("#year, #currentYear").forEach((el) => {
+            el.textContent = year;
+        });
     }
 
+    /* -----------------------------------------------------------------
+       ENLACE DE GITHUB (toma la URL real desde data.js)
+       ----------------------------------------------------------------- */
 
-    /* ================================
-       ACORDEONES DE SEMANAS
-    ================================= */
+    function initGithubLink() {
+        const url = (window.PORTAFOLIO && PORTAFOLIO.meta && PORTAFOLIO.meta.github)
+            ? PORTAFOLIO.meta.github
+            : "https://github.com/";
 
-    const weekHeaders = document.querySelectorAll(".week-header");
+        document.querySelectorAll("#githubLink").forEach((link) => {
+            link.setAttribute("href", url);
+            link.setAttribute("target", "_blank");
+            link.setAttribute("rel", "noopener");
+        });
+    }
 
-    weekHeaders.forEach(header => {
+    /* -----------------------------------------------------------------
+       DATOS DEL ESTUDIANTE (nombre / carrera / universidad en header y footer)
+       ----------------------------------------------------------------- */
 
-        header.addEventListener("click", () => {
+    function initMetaText() {
+        if (!window.PORTAFOLIO || !PORTAFOLIO.meta) return;
+        const meta = PORTAFOLIO.meta;
 
-            const week = header.closest(".week");
+        document.querySelectorAll("[data-meta='nombre']").forEach(el => el.textContent = meta.nombre);
+        document.querySelectorAll("[data-meta='carrera']").forEach(el => el.textContent = meta.carrera);
+        document.querySelectorAll("[data-meta='universidad']").forEach(el => el.textContent = meta.universidad);
+        document.querySelectorAll("[data-meta='universidadSigla']").forEach(el => el.textContent = meta.universidadSigla);
+        document.querySelectorAll("[data-meta='cicloActual']").forEach(el => el.textContent = meta.cicloActual);
+    }
 
-            if (week) {
-                week.classList.toggle("open");
+    /* -----------------------------------------------------------------
+       BOOT SEQUENCE — se inyecta en TODAS las páginas.
+       Efecto de escritura + contador de porcentaje, con una etiqueta de
+       "módulo" distinta según la página (data-boot-label en <body>).
+       ----------------------------------------------------------------- */
+
+    function typeInto(el, text, speed) {
+        return new Promise((resolve) => {
+            el.textContent = "";
+            let i = 0;
+            const timer = window.setInterval(() => {
+                el.textContent += text.charAt(i);
+                i++;
+                if (i >= text.length) {
+                    window.clearInterval(timer);
+                    resolve();
+                }
+            }, speed);
+        });
+    }
+
+    function runBoot() {
+        // Evita duplicar la pantalla de arranque si el HTML ya trae una.
+        if (document.getElementById("bootScreen")) return;
+
+        const moduleLabel = document.body.dataset.bootLabel || "SISTEMA ACADÉMICO";
+
+        const screen = document.createElement("div");
+        screen.className = "boot-screen";
+        screen.id = "bootScreen";
+        screen.innerHTML = `
+            <div class="boot-content">
+                <div class="boot-glyph"></div>
+                <div class="boot-percent" id="bootPercent">0%</div>
+                <div class="boot-line" id="bootLine"></div>
+                <div class="boot-module">MÓDULO: ${moduleLabel}</div>
+                <div class="boot-bar"><div class="boot-bar-fill"></div></div>
+            </div>`;
+        document.body.appendChild(screen);
+
+        const line = document.getElementById("bootLine");
+        const percentEl = document.getElementById("bootPercent");
+
+        // Contador de porcentaje sincronizado con la barra (~1100ms)
+        const start = performance.now();
+        const duration = 1100;
+        function tickPercent(now) {
+            const progress = Math.min(1, (now - start) / duration);
+            percentEl.textContent = Math.round(progress * 100) + "%";
+            if (progress < 1) {
+                window.requestAnimationFrame(tickPercent);
             }
+        }
+        window.requestAnimationFrame(tickPercent);
 
-        });
+        (async () => {
+            await typeInto(line, "SYSTEM INITIALIZING", 26);
+            await new Promise(r => window.setTimeout(r, 200));
+            await typeInto(line, "ACADEMIC SYSTEM ONLINE", 20);
+            await new Promise(r => window.setTimeout(r, 320));
 
-    });
-
-
-    /* ================================
-       GITHUB
-    ================================= */
-
-    const githubLinks = document.querySelectorAll("#githubLink");
-
-    githubLinks.forEach(link => {
-
-        link.addEventListener("click", (event) => {
-
-            event.preventDefault();
-
-            // Reemplazaremos esta dirección cuando me pases tu GitHub.
-            window.open("https://github.com/", "_blank");
-
-        });
-
-    });
-
-
-    /* ================================
-       CONTADORES DE PROGRESO
-    ================================= */
-
-    const courseCount = document.getElementById("courseCount");
-    const weekCount = document.getElementById("weekCount");
-    const activityCount = document.getElementById("activityCount");
-    const evidenceCount = document.getElementById("evidenceCount");
-
-    if (
-        courseCount &&
-        weekCount &&
-        activityCount &&
-        evidenceCount
-    ) {
-
-        /*
-         * Estos contadores toman la información
-         * directamente del HTML.
-         *
-         * Cuando agreguemos más cursos,
-         * semanas, actividades o evidencias,
-         * podremos actualizar este sistema.
-         */
-
-        courseCount.textContent =
-            document.querySelectorAll(".course-card").length;
-
-        weekCount.textContent =
-            document.querySelectorAll(".week").length;
-
-        activityCount.textContent =
-            document.querySelectorAll(".activity-card").length;
-
-        evidenceCount.textContent =
-            document.querySelectorAll(".evidence-card").length;
+            screen.classList.add("is-hidden");
+            window.setTimeout(() => screen.remove(), 550);
+        })();
     }
 
-});
+    /* -----------------------------------------------------------------
+       INIT GENERAL (se ejecuta en todas las páginas)
+       ----------------------------------------------------------------- */
+
+    document.addEventListener("DOMContentLoaded", () => {
+        initMobileMenu();
+        initFooterYear();
+        initGithubLink();
+        initMetaText();
+        runBoot();
+    });
+
+    return { toast };
+
+})();

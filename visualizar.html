@@ -4,20 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Cursos | Academic System</title>
+    <title>Visor de evidencia | Academic System</title>
 
     <link rel="icon" type="image/png" href="imagenes/favicon.png">
-
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Cursos | Academic System">
-    <meta property="og:description" content="Unidades, semanas y evidencias de cada curso, con progreso calculado automáticamente.">
-    <meta property="og:image" content="imagenes/logo_upla.png">
-    <meta property="og:locale" content="es_PE">
+    <meta name="robots" content="noindex">
 
     <link rel="stylesheet" href="styles.css">
 </head>
 
-<body data-boot-label="CURSOS">
+<body data-boot-label="VISOR DE EVIDENCIA">
 
 <header class="header">
     <div class="container nav-container">
@@ -34,7 +29,7 @@
 
         <nav class="nav" id="mainNav">
             <a href="index.html">Inicio</a>
-            <a href="cursos.html" class="active">Cursos</a>
+            <a href="cursos.html">Cursos</a>
             <a href="sobre-mi.html">Sobre mí</a>
             <a href="#" id="githubLink">GitHub</a>
         </nav>
@@ -45,20 +40,17 @@
 
 <main>
 
-    <section class="page-header">
-        <div class="scan-line"></div>
+    <section class="viewer-section">
         <div class="container">
-            <p class="eyebrow"><span class="dot"></span> ACADEMIC SYSTEM</p>
-            <h1>Mis cursos</h1>
-            <p>Unidades, semanas y evidencias de cada curso, con progreso calculado automáticamente.</p>
 
-            <div class="status-bar" id="statusBar"></div>
-        </div>
-    </section>
+            <a href="cursos.html" class="back-link" id="backLink">← Volver a mis cursos</a>
 
-    <section class="section">
-        <div class="container">
-            <div class="courses-grid" id="coursesGrid"></div>
+            <div class="viewer-breadcrumb" id="breadcrumb"></div>
+
+            <div class="viewer-panel" id="viewerPanel">
+                <!-- Se construye dinámicamente según la evidencia -->
+            </div>
+
         </div>
     </section>
 
@@ -84,12 +76,7 @@
 <script src="data.js"></script>
 <script src="script.js"></script>
 <script src="render.js"></script>
-<script>
-    document.addEventListener("DOMContentLoaded", () => {
-        SystemRender.renderStatusBar("#statusBar");
-        SystemRender.renderCourseCards("#coursesGrid");
-    });
-</script>
+<script src="visualizar.js"></script>
 
 </body>
 </html>

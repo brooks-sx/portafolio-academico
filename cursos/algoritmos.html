@@ -4,27 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Algoritmos y Estructura de Datos | Portafolio</title>
+    <title>Algoritmos y Estructura de Datos | Academic System</title>
+
+    <link rel="icon" type="image/png" href="../imagenes/favicon.png">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Algoritmos y Estructura de Datos | Academic System">
+    <meta property="og:description" content="Espacio destinado a las actividades, prácticas y evidencias del curso.">
+    <meta property="og:image" content="../imagenes/logo_upla.png">
+    <meta property="og:locale" content="es_PE">
 
     <link rel="stylesheet" href="../styles.css">
 </head>
 
-<body>
+<body data-boot-label="ALGORITMOS Y ESTRUCTURA DE DATOS">
 
 <header class="header">
     <div class="container nav-container">
 
         <a href="../index.html" class="logo">
-            <span>PORTAFOLIO</span>
-            <small>ACADÉMICO</small>
+            <img src="../imagenes/logo_upla.png" alt="Logo Universidad Peruana Los Andes" class="logo-badge">
+            <span class="logo-text">
+                <strong data-meta="universidadSigla">UPLA</strong>
+                <small>ACADEMIC SYSTEM</small>
+            </span>
         </a>
 
-        <button class="menu-toggle" id="menuToggle">☰</button>
+        <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
 
         <nav class="nav" id="mainNav">
             <a href="../index.html">Inicio</a>
             <a href="../cursos.html" class="active">Cursos</a>
-            <a href="../progreso.html">Mi progreso</a>
             <a href="../sobre-mi.html">Sobre mí</a>
             <a href="#" id="githubLink">GitHub</a>
         </nav>
@@ -36,39 +46,31 @@
 <main>
 
     <section class="course-header">
+        <div class="scan-line"></div>
         <div class="container">
 
-            <a href="../cursos.html" class="back-link">
-                ← Volver a cursos
-            </a>
+            <a href="../cursos.html" class="back-link">← Volver a mis cursos</a>
 
             <span class="course-tag">CURSO</span>
 
-            <h1>Algoritmos y Estructura de Datos</h1>
+            <div class="course-header-top">
+                <h1 data-course-title>Algoritmos y Estructura de Datos</h1>
+                <span data-course-rank></span>
+            </div>
 
-            <p>
-                Actividades, prácticas y evidencias desarrolladas
-                durante el curso.
-            </p>
+            <p data-course-desc>Espacio destinado a las actividades, prácticas y evidencias del curso.</p>
+
+            <div class="course-progress" data-course-progress></div>
+
+            <div class="filter-bar" data-filter-bar></div>
 
         </div>
     </section>
 
-
     <section class="section">
         <div class="container">
-
-            <div class="empty-course">
-                <span>PRÓXIMAMENTE</span>
-
-                <h2>Contenido del curso</h2>
-
-                <p>
-                    Las semanas y actividades de este curso se agregarán
-                    progresivamente.
-                </p>
-            </div>
-
+            <div class="syllabus-card" data-course-syllabus></div>
+            <div data-course-root></div>
         </div>
     </section>
 
@@ -79,20 +81,26 @@
     <div class="container footer-content">
 
         <div>
-            <h3>Portafolio Académico</h3>
-            <p>Ingeniería de Sistemas y Computación</p>
-            <p>Universidad Peruana Los Andes</p>
+            <h3 data-meta="universidadSigla">UPLA</h3>
+            <p data-meta="carrera">Ingeniería de Sistemas y Computación</p>
+            <p data-meta="universidad">Universidad Peruana Los Andes</p>
         </div>
 
         <div class="footer-right">
-            <p>© <span id="currentYear"></span> Todos los derechos reservados.</p>
+            <p>© <span id="year"></span> Todos los derechos reservados.</p>
         </div>
 
     </div>
 </footer>
 
-
+<script src="../data.js"></script>
 <script src="../script.js"></script>
+<script src="../render.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        SystemRender.renderCourseDetail("algoritmos", "../");
+    });
+</script>
 
 </body>
 </html>

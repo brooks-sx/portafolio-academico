@@ -3,28 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portafolio Académico | Ingeniería de Sistemas y Computación</title>
+
+    <title>Fernando Taipe Sulla | Academic System</title>
+    <meta name="description" content="Portafolio académico de Fernando Taipe Sulla — Ingeniería de Sistemas y Computación, Universidad Peruana Los Andes.">
+
+    <link rel="icon" type="image/png" href="imagenes/favicon.png">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Fernando Taipe Sulla | Academic System">
+    <meta property="og:description" content="Portafolio académico de Ingeniería de Sistemas y Computación — Universidad Peruana Los Andes.">
+    <meta property="og:image" content="imagenes/foto_mia.jpeg">
+    <meta property="og:locale" content="es_PE">
+    <meta name="twitter:card" content="summary_large_image">
+
     <link rel="stylesheet" href="styles.css">
 </head>
 
-<body>
+<body data-boot-label="INICIO">
 
 <header class="header">
     <div class="container nav-container">
 
         <a href="index.html" class="logo">
-            <span>PORTAFOLIO</span>
-            <small>ACADÉMICO</small>
+            <img src="imagenes/logo_upla.png" alt="Logo Universidad Peruana Los Andes" class="logo-badge">
+            <span class="logo-text">
+                <strong data-meta="universidadSigla">UPLA</strong>
+                <small>ACADEMIC SYSTEM</small>
+            </span>
         </a>
 
-        <button class="menu-toggle" id="menuToggle">
-            ☰
-        </button>
+        <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
 
         <nav class="nav" id="mainNav">
             <a href="index.html" class="active">Inicio</a>
             <a href="cursos.html">Cursos</a>
-            <a href="progreso.html">Mi progreso</a>
             <a href="sobre-mi.html">Sobre mí</a>
             <a href="#" id="githubLink">GitHub</a>
         </nav>
@@ -35,40 +47,47 @@
 
 <main>
 
-    <!-- HERO -->
     <section class="hero">
+        <div class="scan-line"></div>
         <div class="container hero-content">
 
             <div class="hero-photo">
                 <div class="profile-image">
-                    <img src="imagenes/foto_mia.jpeg" alt="Foto de perfil">
+                    <img src="imagenes/foto_mia.jpeg" alt="Fotografía de Fernando Taipe Sulla">
+                    <span class="status-badge"><span class="dot"></span> SYSTEM ONLINE</span>
                 </div>
             </div>
 
             <div class="hero-text">
-                <p class="eyebrow">PORTAFOLIO ACADÉMICO</p>
+                <p class="eyebrow"><span class="dot"></span> ACADEMIC SYSTEM</p>
 
-                <h1>
-                    Hola, soy
-                    <span>tu nombre</span>
-                </h1>
-
-                <h2>Ingeniería de Sistemas y Computación</h2>
+                <h1>Fernando<span>Taipe Sulla</span></h1>
+                <h2>Estudiante de Ingeniería de Sistemas y Computación</h2>
 
                 <p>
-                    Este portafolio reúne mis trabajos, actividades,
-                    proyectos y evidencias desarrolladas durante mi formación
-                    universitaria.
+                    Portafolio académico donde organizo mis cursos, unidades, semanas
+                    y evidencias de trabajo a lo largo de mi formación profesional en
+                    la Universidad Peruana Los Andes.
                 </p>
 
                 <div class="hero-buttons">
-                    <a href="cursos.html" class="btn btn-primary">
-                        Ver mis cursos
-                    </a>
+                    <a href="cursos.html" class="btn btn-primary">Explorar cursos</a>
+                    <a href="sobre-mi.html" class="btn btn-secondary">Sobre mí</a>
+                </div>
 
-                    <a href="sobre-mi.html" class="btn btn-secondary">
-                        Sobre mí
-                    </a>
+                <div class="hero-meta">
+                    <div>
+                        <span>CARRERA</span>
+                        <strong data-meta="carrera">Ingeniería de Sistemas y Computación</strong>
+                    </div>
+                    <div>
+                        <span>UNIVERSIDAD</span>
+                        <strong data-meta="universidad">Universidad Peruana Los Andes</strong>
+                    </div>
+                    <div>
+                        <span>CICLO ACTUAL</span>
+                        <strong data-meta="cicloActual">V</strong>
+                    </div>
                 </div>
             </div>
 
@@ -76,50 +95,38 @@
     </section>
 
 
-    <!-- PRESENTACIÓN -->
     <section class="section">
         <div class="container">
 
             <div class="section-heading">
-                <p class="eyebrow">MI PORTAFOLIO</p>
-                <h2>Un espacio para mostrar mi aprendizaje</h2>
-                <p>
-                    Aquí podrás encontrar los diferentes cursos que forman
-                    parte de mi formación, junto con sus actividades,
-                    proyectos y evidencias.
-                </p>
+                <p class="eyebrow"><span class="dot"></span> CÓMO FUNCIONA</p>
+                <h2>Un sistema para organizar mi formación</h2>
+                <p>Cada curso está estructurado en unidades, semanas y evidencias, con
+                   progreso calculado automáticamente a medida que avanzo.</p>
             </div>
 
             <div class="feature-grid">
 
-                <article class="feature-card">
+                <div class="feature-card">
                     <div class="feature-number">01</div>
                     <h3>Cursos</h3>
-                    <p>
-                        Consulta mis cursos y accede a las actividades
-                        organizadas por semanas.
-                    </p>
-                    <a href="cursos.html">Explorar cursos →</a>
-                </article>
+                    <p>Cada curso agrupa sus unidades, semanas y evidencias en un solo lugar, con progreso visible.</p>
+                    <a href="cursos.html">Ver cursos →</a>
+                </div>
 
-                <article class="feature-card">
+                <div class="feature-card">
                     <div class="feature-number">02</div>
-                    <h3>Mi progreso</h3>
-                    <p>
-                        Visualiza de forma general el avance de mi
-                        portafolio académico.
-                    </p>
-                    <a href="progreso.html">Ver progreso →</a>
-                </article>
+                    <h3>Evidencias</h3>
+                    <p>Imágenes, PDFs, código y documentos se visualizan desde un mismo visor, sin importar el tipo de archivo.</p>
+                    <a href="cursos.html">Ver evidencias →</a>
+                </div>
 
-                <article class="feature-card">
+                <div class="feature-card">
                     <div class="feature-number">03</div>
-                    <h3>Sobre mí</h3>
-                    <p>
-                        Conoce más sobre mi formación y mi área de estudio.
-                    </p>
-                    <a href="sobre-mi.html">Conocer más →</a>
-                </article>
+                    <h3>Progreso</h3>
+                    <p>El avance de cada semana y curso se calcula automáticamente según las evidencias registradas.</p>
+                    <a href="cursos.html">Ver progreso →</a>
+                </div>
 
             </div>
 
@@ -133,18 +140,19 @@
     <div class="container footer-content">
 
         <div>
-            <h3>Portafolio Académico</h3>
-            <p>Ingeniería de Sistemas y Computación</p>
-            <p>Universidad Peruana Los Andes</p>
+            <h3 data-meta="universidadSigla">UPLA</h3>
+            <p data-meta="carrera">Ingeniería de Sistemas y Computación</p>
+            <p data-meta="universidad">Universidad Peruana Los Andes</p>
         </div>
 
         <div class="footer-right">
-            <p>© <span id="currentYear"></span> Todos los derechos reservados.</p>
+            <p>© <span id="year"></span> Todos los derechos reservados.</p>
         </div>
 
     </div>
 </footer>
 
+<script src="data.js"></script>
 <script src="script.js"></script>
 
 </body>
